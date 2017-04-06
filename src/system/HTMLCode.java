@@ -22,8 +22,8 @@ public class HTMLCode {
             "  <title>Bootstrap Example</title>\n" +
             "  <meta charset=\"utf-8\">\n" +
             "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
-            "  <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">\n" +
-            "  <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"> </script>\n" +
+            "  <link rel=\"stylesheet\" href=\"..Files/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css\">\n" +
+            " <script src=\"..Files/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js\"> </script>"+
             "  <script> function getSelectedElement(){\n" +
             "    return (document.getElementById(\"partyNames\").value);\n" +
             "  }</script>\n" +
@@ -81,17 +81,12 @@ public class HTMLCode {
         ArrayList<Candidate> candidates = null;
 
         try{
-
            candidates =  JavaFXWeb.stub.fetchCandidates();
            System.out.print(candidates.isEmpty());
         }
         catch(Exception e){
             e.printStackTrace();
         }
-
-//        for (int i=0; i<3; i++){
-//            candidateHTMLObjectArrayList.add(new system.CandidateHTMLObject("Party"+i , "https://placehold.it/350x150"));
-//        }
 
         for(Candidate c: candidates){
             System.out.println(c);
@@ -108,6 +103,7 @@ public class HTMLCode {
 
     private void buildHTMLSelectCode(){
         selectCode = "   <hr>\n     Choose Your Desired Party: " + "\n   <select id=\"partyNames\" onchange=displaySelectedParty();>\n";
+        selectCode += "             <option disabled selected value> -- Select an Option -- </option>\n";
         for ( CandidateHTMLObject candidateHTMLObject : candidateHTMLObjectArrayList) {
             selectCode += "         <option value=\""+ candidateHTMLObject.getPartyName()+"\">"+ candidateHTMLObject.getPartyName()+"</option> \n";
         }

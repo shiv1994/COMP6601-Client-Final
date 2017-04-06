@@ -23,15 +23,17 @@ import netscape.javascript.JSObject;
  * Created by shivr on 4/5/2017.
  */
 
-class MyBrowser extends Region {
+class HTMLBrowser extends Region {
 
     private PopupWindow popupWindow;
+
+    private static WebEngine webEngine;
 
     private static String userName = System.getProperty("user.name");
 
     private String[] urls = new String[]{
-            "file:///C:\\Users\\"+userName+"\\Desktop\\voting-voter-client\\src\\Files\\main.html",
-            "file:///C:\\Users\\"+userName+"\\Desktop\\voting-voter-client\\src\\Files\\help.html",
+            this.getClass().getResource("../Files/main.html").toString(),
+            this.getClass().getResource("../Files/help.html").toString()
     };
 
     private String[] captions = new String[]{
@@ -48,17 +50,17 @@ class MyBrowser extends Region {
 
     private WebView webView = new WebView();
 
-    public MyBrowser(){
+    public HTMLBrowser(){
 
         HTMLCode htmlCode = new HTMLCode();
 
-        WebEngine webEngine = webView.getEngine();
+        webEngine = webView.getEngine();
 
         getStyleClass().add("browser");
 
         webEngine.setUserAgent("AppleWebKit/537.44");
 
-        webEngine.load(String.valueOf(this.getClass().getResource("file:///C:\\Users\\shivr\\Desktop\\tester\\main.html")));
+        webEngine.load(this.getClass().getResource("../Files/main.html").toString());
 
         webEngine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener<Worker.State>(){
@@ -79,8 +81,8 @@ class MyBrowser extends Region {
                 PauseTransition pause = new PauseTransition(Duration.seconds(60));
                 pause.setOnFinished(e -> popupWindow.closePopupWindow());
                 pause.play();
+                webEngine.reload();
             }
-
         });
 
 
@@ -92,6 +94,7 @@ class MyBrowser extends Region {
 
         // Adding hyperlinks to a toolbar which will then be displayed in the window for easy navigation.
         for (int i = 0; i < captions.length; i++) {
+
             final Hyperlink hpl = hyperlinks[i] = new Hyperlink(captions[i]);
             Image image = images[i] = new Image(getClass().getResourceAsStream(imageFiles[i]));
             hpl.setGraphic(new ImageView(image));

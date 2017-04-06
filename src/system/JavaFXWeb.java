@@ -19,7 +19,7 @@ import ClientVoting.*;
 
 public class JavaFXWeb extends Application implements RMIClientSocketFactory, Serializable {
     private Scene scene;
-    private MyBrowser myBrowser;
+    private HTMLBrowser myBrowser;
     private PopupWindow popupWindow;
     public static ClientVotingInterface stub = null;
 
@@ -37,31 +37,32 @@ public class JavaFXWeb extends Application implements RMIClientSocketFactory, Se
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Voting Application v1.0");
 
-        // Determine if the client can vote.
-        Boolean getServerStatus = null;
-        try {
-            getServerStatus = stub.canVote();
+        if(stub==null){
+            popupWindow = new PopupWindow("There was an error connecting to the server. Please close the program.");
+            primaryStage.setScene(popupWindow.setupScene());
+            primaryStage.show();
         }
-        catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        else {
+            // Determine if the client can vote.
+            Boolean getServerStatus = null;
+            try {
+                getServerStatus = stub.canVote();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
 
-        if(getServerStatus!=null) {
             // Display either a popup or the voting interface.
             if (!getServerStatus) {
                 popupWindow = new PopupWindow("The Voting Process has not commenced yet.");
                 primaryStage.setScene(popupWindow.setupScene());
                 primaryStage.show();
             } else {
-                myBrowser = new MyBrowser();
-                scene = new Scene(myBrowser, 850, 650);
+                myBrowser = new HTMLBrowser();
+                scene = new Scene(myBrowser, 850, 700);
                 primaryStage.setScene(scene);
                 scene.getStylesheets().add("Files/BrowserToolbar.css");
                 primaryStage.show();
             }
-        }
-        else{
-            System.exit(1);
         }
     }
 

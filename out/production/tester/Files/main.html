@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> </script>
+  <script> function getSelectedElement(){
+    return (document.getElementById("partyNames").value);
+  }</script>
+  <script> function displaySelectedParty(){
+    document.getElementById("displaySelectedParty").innerHTML = "You selected: <b>" + getSelectedElement() + "</b>";
+    document.getElementById("buttonID").style.display = "inline";
+  }</script>
+  <script> function callJavaFX(){
+    var selectedParty = getSelectedElement();
+    app.callFromJavascript(selectedParty);
+  }</script>
+ <script> function displayAlert(){
+    alert();
+  }</script>
+</head>
+<body>
+  <div class="jumbotron text-center">
+    <h2>Voting Systems Inc.</h2>
+    <p>Please select your candidate and then click the vote button.</p>
+  </div><div class="container">
+ <div class="row"> 
+ <div class="col-sm-4 text-center">
+      <h3>test</h3>
+      <h4>test</h4>
+      <img src="https://placehold.it/350x150" class="img-responsive" alt="AlternativeImg">
+      <br>
+ </div>
+ <div class="col-sm-4 text-center">
+      <h3>anderson</h3>
+      <h4>sadnas</h4>
+      <img src="https://placehold.it/350x150" class="img-responsive" alt="AlternativeImg">
+      <br>
+ </div>
+ <div class="col-sm-4 text-center">
+      <h3>asndjsan</h3>
+      <h4>asndjsandsaj</h4>
+      <img src="https://placehold.it/350x150" class="img-responsive" alt="AlternativeImg">
+      <br>
+ </div>
+</div>
+ <div class="row"> 
+   <hr>
+     Choose Your Desired Party: 
+   <select id="partyNames" onchange=displaySelectedParty();>
+         <option value="test">test</option> 
+         <option value="anderson">anderson</option> 
+         <option value="asndjsan">asndjsan</option> 
+   </select>
+  </div>
+  <div class="row text-center">
+      <hr>
+      <p id="displaySelectedParty"> <b> No Party Selected. </b> </p>
+      <div id="buttonID" style="display:none";>
+        <button type="button" class="btn btn-success" onclick="callJavaFX();displayAlert();">Click to Vote</button>
+      </div>
+    <br>
+  </div>
+</div>
+</body>
+</html>

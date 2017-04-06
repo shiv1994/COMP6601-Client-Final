@@ -22,8 +22,9 @@ public class HTMLCode {
             "  <title>Bootstrap Example</title>\n" +
             "  <meta charset=\"utf-8\">\n" +
             "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
-            "  <link rel=\"stylesheet\" href=\"..Files/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css\">\n" +
-            " <script src=\"..Files/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js\"> </script>"+
+            "  <link rel=\"stylesheet\" href=\"..Files/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.css\">\n" +
+//            "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">"+
+            "  <script src=\"..Files/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js\"> </script>\n"+
             "  <script> function getSelectedElement(){\n" +
             "    return (document.getElementById(\"partyNames\").value);\n" +
             "  }</script>\n" +
@@ -90,7 +91,7 @@ public class HTMLCode {
 
         for(Candidate c: candidates){
             System.out.println(c);
-            candidateHTMLObjectArrayList.add(new CandidateHTMLObject(c.getName(), "https://placehold.it/350x150", c.getDescription()));
+            candidateHTMLObjectArrayList.add(new CandidateHTMLObject(c.getName(), c.getImg() , c.getDescription()));
         }
 
     }

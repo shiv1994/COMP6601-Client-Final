@@ -25,7 +25,8 @@ public class JavaFXWeb extends Application implements RMIClientSocketFactory, Se
 
     public static void main(String[] args) {
         try{
-            stub = (ClientVotingInterface) Naming.lookup("rmi://localhost:5000/voting");
+            stub = (ClientVotingInterface) Naming.lookup("rmi://162.243.166.11:5000/voting");
+//            stub = (ClientVotingInterface) Naming.lookup("rmi://localhost:5000/voting");
         }
         catch(Exception e){
             e.printStackTrace();
@@ -46,7 +47,7 @@ public class JavaFXWeb extends Application implements RMIClientSocketFactory, Se
             // Determine if the client can vote.
             Boolean getServerStatus = null;
             try {
-                getServerStatus = stub.canVote();
+                getServerStatus = stub.votingOpen();
             } catch (RemoteException e) {
                 e.printStackTrace();
             }

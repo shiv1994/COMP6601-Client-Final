@@ -23,8 +23,8 @@ public class HTMLCode {
             "  <meta charset=\"utf-8\">\n" +
             "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
 //            "  <link rel=\"stylesheet\" href=\"..Files/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.css\">\n" +
-            "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">"+
-//            "  <script src=\"..Files/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js\"> </script>\n"+
+            "<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\">\n"+
+            "  <script src=\"..Files/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js\"> </script>\n"+
             "  <script> function getSelectedElement(){\n" +
             "    return (document.getElementById(\"partyNames\").value);\n" +
             "  }</script>\n" +
@@ -83,14 +83,13 @@ public class HTMLCode {
 
         try{
            candidates =  JavaFXWeb.stub.fetchCandidates();
-           System.out.print(candidates.isEmpty());
         }
         catch(Exception e){
             e.printStackTrace();
         }
 
         for(Candidate c: candidates){
-            System.out.println(c);
+//            System.out.println(c);
             candidateHTMLObjectArrayList.add(new CandidateHTMLObject(c.getName(), c.getImg() , c.getDescription()));
         }
 
@@ -113,12 +112,13 @@ public class HTMLCode {
 
     private void writeToFile(String generatedCode){
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter("src/Files/main.html"));
+            String username = System.getProperty("user.name");
+            BufferedWriter out = new BufferedWriter(new FileWriter("C:\\Users\\"+username+"\\Desktop\\voting-voter-client\\src\\Files\\main.html"));
             out.write(generatedCode);
             out.close();
         }
         catch (IOException e){
-            System.out.println("Exception ");
+            e.printStackTrace();
         }
     }
 

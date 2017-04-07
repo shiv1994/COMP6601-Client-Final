@@ -31,13 +31,10 @@ class HTMLBrowser extends Region {
 
     private static String userName = System.getProperty("user.name");
 
-    private String[] urls = new String[]{
-            this.getClass().getResource("../Files/main.html").toString(),
-            this.getClass().getResource("../Files/help.html").toString()
-    };
+    private String[] urls ;
 
     private String[] captions = new String[]{
-            "Vote",
+            "Vote Screen",
             "Help"
     };
 
@@ -60,7 +57,12 @@ class HTMLBrowser extends Region {
 
         webEngine.setUserAgent("AppleWebKit/537.44");
 
-        webEngine.load(this.getClass().getResource("../Files/main.html").toString());
+        webEngine.load(this.getClass().getResource("..//Files//help.html").toString());
+
+         urls = new String[]{
+                this.getClass().getResource("..//Files//main.html").toString(),
+                this.getClass().getResource("../Files/help.html").toString()
+        };
 
         webEngine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener<Worker.State>(){
@@ -76,11 +78,11 @@ class HTMLBrowser extends Region {
         webEngine.setOnAlert(new EventHandler<WebEvent<String>>(){
             @Override
             public void handle(WebEvent<String> arg0) {
-                popupWindow = new PopupWindow("Vote has been submitted. This dialog will disappear after one minute.");
-                popupWindow.showPopupWindow();
-                PauseTransition pause = new PauseTransition(Duration.seconds(60));
-                pause.setOnFinished(e -> popupWindow.closePopupWindow());
-                pause.play();
+//                popupWindow = new PopupWindow("Vote has been submitted. This dialog will disappear after one minute.");
+//                popupWindow.showPopupWindow();
+//                PauseTransition pause = new PauseTransition(Duration.seconds(60));
+//                pause.setOnFinished(e -> popupWindow.closePopupWindow());
+//                pause.play();
                 webEngine.reload();
             }
         });
